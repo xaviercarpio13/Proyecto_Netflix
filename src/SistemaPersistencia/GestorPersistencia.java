@@ -27,21 +27,23 @@ public class GestorPersistencia<T> {
         lista.remove(objeto);
     }
 
-    public void modificar(String id, String password) {
+    public void modificarPassword(String tabla, String columna, String id, String password) {
         try {
             Conexion conexion = new Conexion();
             conexion.conectar();
             Statement consulta;
             consulta = conexion.getConex().createStatement();
-            consulta.executeUpdate("Update Usuarios set password='"+password
-                  + "' where id='"+id+"'");
+            consulta.executeUpdate("Update '"+tabla+"' set '"+columna+"' ='" + password
+                    + "' where id='" + id + "'");
 
-            System.out.println("Contrasenia cambiada correctamente");
+            System.out.println("Dato cambiado cambiada correctamente");
 
         } catch (Exception SQLException) {
             System.out.println("Error al cambiar la contrasenia");
         }
     }
+
+ 
 
     public ArrayList buscar(String id) {
         try {

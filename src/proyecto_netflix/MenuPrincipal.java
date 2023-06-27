@@ -92,6 +92,7 @@ public class MenuPrincipal {
     public static void menuB(InterfazUsuario interfaz) {
         Scanner resp=new Scanner (System.in);
         int opcion2;
+        System.out.println("________________________________________");
         System.out.println("Seleccione un perfil o configuracion");
         System.out.println("1. Perfil A");
         System.out.println("2. Perfil B");
@@ -153,11 +154,23 @@ public class MenuPrincipal {
                     System.out.println("Menu cambiar contrasenia");
                     System.out.println("Escriba la nueva contrasenia");
                     String newPassword=resp.nextLine();
-                    interfazUsuario.getGestor().modificar(interfazUsuario.getUsuario().getId(), newPassword);
+                    interfazUsuario.getGestor().modificarPassword(
+                            "Usuarios","password",interfazUsuario.getUsuario().getId(), newPassword);
                     menuB(interfazUsuario);
                     
                 case 2:
+                    String plan;
                     System.out.println("Configuracion de suscripcion");
+                    System.out.println("Digite el nuevo plan a contratar");
+                    System.out.println("1: Basico");
+                    System.out.println("2: Familiar");
+                    System.out.println("3: Premium");
+                    plan=resp.nextLine();
+                    interfazUsuario.getGestor().modificarPassword(
+                            "Suscripcion","plan",interfazUsuario.getUsuario().getId(), plan);
+                    menuB(interfazUsuario);
+                    
+                    
                     break;
                 case 3:
                     System.out.println("Configuracion del perfil");
