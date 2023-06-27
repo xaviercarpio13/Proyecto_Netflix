@@ -27,8 +27,20 @@ public class GestorPersistencia<T> {
         lista.remove(objeto);
     }
 
-    public void modificar(T objeto) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void modificar(String id, String password) {
+        try {
+            Conexion conexion = new Conexion();
+            conexion.conectar();
+            Statement consulta;
+            consulta = conexion.getConex().createStatement();
+            consulta.executeUpdate("Update Usuarios set password='"+password
+                  + "' where id='"+id+"'");
+
+            System.out.println("Contrasenia cambiada correctamente");
+
+        } catch (Exception SQLException) {
+            System.out.println("Error al cambiar la contrasenia");
+        }
     }
 
     public ArrayList buscar(String id) {
@@ -37,27 +49,27 @@ public class GestorPersistencia<T> {
             conexion.conectar();
             Statement consulta;
             consulta = conexion.getConex().createStatement();
-            ResultSet resultado = consulta.executeQuery("Select*from Usuarios where email='"+id+"'");
+            ResultSet resultado = consulta.executeQuery("Select*from Usuarios where email='" + id + "'");
             //ResultSet resultado = consulta.executeQuery("Select*from Usuarios where email='xaviercarpio26@gmail.com'");
-            boolean datosEncontrados=false;
+            boolean datosEncontrados = false;
 
             ArrayList datos = new ArrayList();
-              
+
             while (resultado.next()) {
-                datosEncontrados=true;
+                datosEncontrados = true;
                 datos.add(resultado.getString(1));
                 datos.add(resultado.getString(2));
                 datos.add(resultado.getString(3));
                 datos.add(resultado.getString(4));
                 datos.add(resultado.getString(5));
             }
-            
-            if(datosEncontrados){
-              return datos;  
-            } else{
+
+            if (datosEncontrados) {
+                return datos;
+            } else {
                 return null;
             }
-            
+
         } catch (Exception SQLException) {
             System.out.println("Error en método buscar");
             return null;
@@ -75,4 +87,5 @@ public class GestorPersistencia<T> {
     public void cargar() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
 }

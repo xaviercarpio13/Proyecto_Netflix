@@ -1,22 +1,22 @@
 package Servidor;
+import InterfazCliente.Usuario;
 import SistemaPersistencia.GestorPersistencia;
 import java.util.ArrayList;
 
 public class GestorSuscripcion {
+    private Usuario usuario;
     private ArrayList<Suscripcion> suscripcion;
-    private GestorPersistencia gestorPersistencia;
 
-    public GestorSuscripcion() {
-        suscripcion = new ArrayList<>();
+
+    public GestorSuscripcion(Usuario us) {
+        this.usuario=us;
+
     }
 
-    public GestorSuscripcion(GestorPersistencia gestorPersistencia) {
-        this.gestorPersistencia = gestorPersistencia;
-        suscripcion = new ArrayList<>();
-    }
 
-    public void cambiarContrasenia(String email, String contrasenia, String nuevaContrasenia){
-        throw new UnsupportedOperationException("Not supported yet.");
+
+    public void cambiarContrasenia(String contrasenia, String nuevaContrasenia){
+            
     }
     public Suscripcion cambiarPlan(String email, String contrasenia, String nuevoPlan){
         throw new UnsupportedOperationException("Not supported yet.");

@@ -97,7 +97,7 @@ public class MenuPrincipal {
         scanner.nextLine();
 
         if (opcion2 == 3) {
-            menuC(us);
+            menuC(interfaz);
 
         }
 
@@ -131,9 +131,11 @@ public class MenuPrincipal {
         } while (opcion != 0);
     }
 
-    public static void menuC(Usuario us) {
+    public static void menuC(InterfazUsuario interfazUsuario) {
         int opcion;
+        
         Scanner resp = new Scanner(System.in);
+        do {  
         System.out.println("________________________________________");
         System.out.println("Menu de configuracion, seleccione la operacion a realizar");
         System.out.println("1. Cambiar contraseña");
@@ -142,10 +144,14 @@ public class MenuPrincipal {
         System.out.println("0. Regresar a pantalla principal");
         opcion = resp.nextInt();
         resp.nextLine();
-        do {
+        
             switch (opcion) {
                 case 1:
                     System.out.println("Menu cambiar contrasenia");
+                    System.out.println("Escriba la nueva contrasenia");
+                    String newPassword=resp.nextLine();
+                    interfazUsuario.getGestor().modificar(interfazUsuario.getUsuario().getId(), newPassword);
+
                     break;
                 case 2:
                     System.out.println("Configuracion de suscripcion");
