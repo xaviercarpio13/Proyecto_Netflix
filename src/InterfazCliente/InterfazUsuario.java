@@ -27,6 +27,11 @@ public class InterfazUsuario {
         this.controladorUP = controladorUP;
     }
 
+    public Pelicula getPelicula() {
+        return pelicula;
+    }
+
+    
     public Usuario iniciarSesion(String email, String contrasenia) {
         GestorPersistencia gestor = new GestorPersistencia();
         ArrayList respuesta = gestor.buscar(email);
