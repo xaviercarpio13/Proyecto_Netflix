@@ -24,7 +24,7 @@ public class MenuPrincipal {
                     menuA(scanner);
                     break;
                 case 2:
-                    menuB(scanner);
+                    menuPrincipal(scanner);
                     break;
                 case 0:
                     System.out.println("Cerrando...");
@@ -66,9 +66,7 @@ public class MenuPrincipal {
         } while (opcion != 0);
     }
 
-    public static void menuB(Scanner scanner) {
-        int opcion;
-        int opcion2;
+    public static void menuPrincipal(Scanner scanner) {
         String correo;
         String pass;
         System.out.println("________________________________________");
@@ -83,22 +81,26 @@ public class MenuPrincipal {
 
         Usuario us = interfaz.iniciarSesion(correo, pass);
         if (us != null) {
+            menuB(interfaz);
             System.out.println("Bienvenido, " + us.getName());
         } else {
             System.out.println("Correo o contrasenia no valido");
             System.exit(0);
         }
-
+    }
+    
+    public static void menuB(InterfazUsuario interfaz) {
+        Scanner resp=new Scanner (System.in);
+        int opcion2;
         System.out.println("Seleccione un perfil o configuracion");
         System.out.println("1. Perfil A");
         System.out.println("2. Perfil B");
         System.out.println("3. Configuracion");
-        opcion2 = scanner.nextInt();
-        scanner.nextLine();
+        opcion2 = resp.nextInt();
+        resp.nextLine();
 
         if (opcion2 == 3) {
             menuC(interfaz);
-
         }
 
         do {
@@ -108,10 +110,10 @@ public class MenuPrincipal {
             System.out.println("3. Buscar película");
             System.out.println("0. Volver a la página principal");
 
-            opcion = scanner.nextInt();
-            scanner.nextLine(); // Consumir el salto de línea después del número
+            opcion2 = resp.nextInt();
+            resp.nextLine(); // Consumir el salto de línea después del número
 
-            switch (opcion) {
+            switch (opcion2) {
                 case 1:
                     System.out.println("Viendo película 1");
                     break;
@@ -128,7 +130,7 @@ public class MenuPrincipal {
                     System.out.println("Opción inválida. Por favor, elige nuevamente.");
                     break;
             }
-        } while (opcion != 0);
+        } while (opcion2 != 0);
     }
 
     public static void menuC(InterfazUsuario interfazUsuario) {
@@ -144,6 +146,7 @@ public class MenuPrincipal {
         System.out.println("0. Regresar a pantalla principal");
         opcion = resp.nextInt();
         resp.nextLine();
+        System.out.println("________________________________________");
         
             switch (opcion) {
                 case 1:
@@ -151,8 +154,8 @@ public class MenuPrincipal {
                     System.out.println("Escriba la nueva contrasenia");
                     String newPassword=resp.nextLine();
                     interfazUsuario.getGestor().modificar(interfazUsuario.getUsuario().getId(), newPassword);
-
-                    break;
+                    menuB(interfazUsuario);
+                    
                 case 2:
                     System.out.println("Configuracion de suscripcion");
                     break;
@@ -161,7 +164,7 @@ public class MenuPrincipal {
                     break;
                 case 0:
                     System.out.println("Volviendo a la página principal...");
-                    menuB(resp);
+                    menuPrincipal(resp);
                     
                 default:
                     System.out.println("Opción inválida. Por favor, elige nuevamente.");
