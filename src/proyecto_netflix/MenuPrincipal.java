@@ -2,20 +2,19 @@ package proyecto_netflix;
 
 import java.util.Scanner;
 import Clases.*;
-import java.sql.SQLException;
+
 
 public class MenuPrincipal {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int opcion;
-
         do {
-
             System.out.println("Bienvenido a Netflix, elige una opcin:");
             System.out.println("1. Contratar plan");
             System.out.println("2. Iniciar sesion");
             System.out.println("0. Cerrar");
+            System.out.println("_______________________________________________");
 
             opcion = scanner.nextInt();
             scanner.nextLine(); // Consumir el salto de línea después del número
