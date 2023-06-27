@@ -14,4 +14,37 @@ public class Perfil {
         this.restriccion = restriccion;
         this.idUsuario = idUsuario;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Integer getRestriccion() {
+        return restriccion;
+    }
+
+    public void setRestriccion(Integer restriccion) {
+        this.restriccion = restriccion;
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public String getId() {
+        return Id;
+    }
+
+    public void setId(String Id) {
+        this.Id = Id;
+    }
+    
 }

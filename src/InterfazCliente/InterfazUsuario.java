@@ -17,6 +17,7 @@ public class InterfazUsuario {
     private Pelicula pelicula;
     private GestorPersistencia gestor;
     private ControladorUsuarioPerfil controladorUP;
+    
 
     public InterfazUsuario() {
     }
@@ -52,7 +53,7 @@ public class InterfazUsuario {
             return null;
         }
     }
-
+    
     public Pelicula verPelicula(String titulo) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

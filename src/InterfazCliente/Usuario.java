@@ -1,11 +1,17 @@
 package InterfazCliente;
 
+import java.sql.Statement;
+import proyecto_netflix.Conexion;
+
 public class Usuario {
     private String id;
     private String name;
     private String email;
     private  String contrasenia;
     private String fechaNacimiento;
+
+    public Usuario() {
+    }
 
     public Usuario(String id, String name, String email, String contrasenia, String fechaNacimiento) {
         this.id = id;
@@ -55,5 +61,17 @@ public class Usuario {
         this.fechaNacimiento = fechaNacimiento;
     }
     
-   
+    public void crearUsuario(){   
+        try {
+            Conexion conexion = new Conexion();
+            conexion.conectar();
+            Statement consulta;
+            consulta = conexion.getConex().createStatement();
+            consulta.execute("INSERT INTO Usuario (id, nombre, email, password, fechaNacimiento) VALUES (?,?,?,?,?)");
+            
+            System.out.println("Usuario guardado con exito");
+        } catch (Exception SQLException) {
+            System.out.println("Error al guardar usuario");
+        }
+    }  
 }

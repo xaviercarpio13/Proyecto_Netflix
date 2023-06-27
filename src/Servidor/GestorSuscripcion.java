@@ -12,9 +12,8 @@ public class GestorSuscripcion {
         this.usuario=us;
 
     }
-
-
-
+    
+    
     public void cambiarContrasenia(String contrasenia, String nuevaContrasenia){
             
     }

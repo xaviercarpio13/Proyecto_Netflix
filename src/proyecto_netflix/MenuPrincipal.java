@@ -1,6 +1,7 @@
 package proyecto_netflix;
 
 import InterfazCliente.InterfazUsuario;
+import InterfazCliente.Perfil;
 import InterfazCliente.Usuario;
 import java.util.Scanner;
 
@@ -21,10 +22,10 @@ public class MenuPrincipal {
 
             switch (opcion) {
                 case 1:
-                    menuA(scanner);
+                    menuContratarPlan(scanner);
                     break;
                 case 2:
-                    menuPrincipal(scanner);
+                    menuIniciarSesion(scanner);
                     break;
                 case 0:
                     System.out.println("Cerrando...");
@@ -38,12 +39,14 @@ public class MenuPrincipal {
         scanner.close();
     }
 
-    public static void menuA(Scanner scanner) {
+    public static void menuContratarPlan(Scanner scanner) {
         int opcion;
 
         do {
-            System.out.println("1. Hola");
-            System.out.println("2. Hola2");
+            System.out.println("Escoge el plan de tu preferencia: ");
+            System.out.println();
+            System.out.println("1. Plan Individual a $4,99 mensuales");
+            System.out.println("2. Plan Familiar a $9,99 mensuales");
             System.out.println("0. Volver a la página principal");
 
             opcion = scanner.nextInt();
@@ -52,6 +55,9 @@ public class MenuPrincipal {
             switch (opcion) {
                 case 1:
                     System.out.println("¡Hola!");
+                    
+                    
+                    
                     break;
                 case 2:
                     System.out.println("¡Hola2!");
@@ -66,7 +72,73 @@ public class MenuPrincipal {
         } while (opcion != 0);
     }
 
-    public static void menuPrincipal(Scanner scanner) {
+     public static void obtenerDatos(Scanner scanner) {
+         String aux;
+        int opcion;
+      //usuario 
+     String idUsuario;
+     String nombre; 
+     String email;
+     String password; 
+     String fechaNacimiento;
+     
+     //suscripcion
+     String idSuscripcion;
+     String plan;
+     float precio;
+     String fechaContratacion;
+     
+        String pass;
+        System.out.println("Ingresa tus datos de pago: ");
+        System.out.println("________________________________________");
+        System.out.println("Ingresa tu numero de tarjeta: ");
+        aux = scanner.nextLine();
+        System.out.println("Ingresa tu codigo CVV: ");
+        aux = scanner.nextLine();
+        System.out.println("Verificando...");
+        System.out.println("¡Tus datos de pago se han guardado exitosamente!");
+        System.out.println("________________________________________");
+        System.out.println("Da enter para empezar a crear tu cuenta");
+        System.out.println("/n/n");
+         
+       // Usuario usuario = null;
+        System.out.println("Ingresa tus datos para crear cuenta:");
+        System.out.println("________________________________________");
+        System.out.println("Ingresa tu numero de cedula:");
+        idUsuario = scanner.nextLine();
+       // usuario.setId(idUsuario);
+        
+       System.out.println("Ingresa tu nombre:");
+       nombre = scanner.nextLine();
+       // usuario.setId(idUsuario);
+       
+        System.out.println("Ingresa tu fecha nacimiento: ");
+        fechaNacimiento = scanner.nextLine();
+       // usuario.setFechaNacimiento(fechaNacimiento);
+        
+        System.out.println("Ingresa tu correo electronico:");
+        email = scanner.nextLine();
+        //usuario.setEmail(email);
+        
+        System.out.println("Ingresa tu contrasenia:");
+        password = scanner.nextLine();
+        //usuario.setContrasenia(password);
+        
+        Usuario usuario = new Usuario(idUsuario,nombre, email, password, fechaNacimiento);
+        
+        InterfazUsuario interfaz = new InterfazUsuario();
+
+        Usuario us = interfaz.iniciarSesion(email,password);
+        if (us != null) {
+            menuPerfil(interfaz);
+            System.out.println("Bienvenido, " + us.getName());
+        } else {
+            System.out.println("Correo o contrasenia no valido");
+            System.exit(0);
+        }
+     }
+     
+    public static void menuIniciarSesion(Scanner scanner) {
         String correo;
         String pass;
         System.out.println("________________________________________");
@@ -81,7 +153,7 @@ public class MenuPrincipal {
 
         Usuario us = interfaz.iniciarSesion(correo, pass);
         if (us != null) {
-            menuB(interfaz);
+            menuPerfil(interfaz);
             System.out.println("Bienvenido, " + us.getName());
         } else {
             System.out.println("Correo o contrasenia no valido");
@@ -89,7 +161,7 @@ public class MenuPrincipal {
         }
     }
 
-    public static void menuB(InterfazUsuario interfaz) {
+    public static void menuPerfil(InterfazUsuario interfaz) {
         Scanner resp = new Scanner(System.in);
         int opcion2;
         System.out.println("________________________________________");
@@ -101,7 +173,7 @@ public class MenuPrincipal {
         resp.nextLine();
 
         if (opcion2 == 3) {
-            menuC(interfaz);
+            menuConfiguracion(interfaz);
         }
 
         do {
@@ -134,7 +206,7 @@ public class MenuPrincipal {
         } while (opcion2 != 0);
     }
 
-    public static void menuC(InterfazUsuario interfazUsuario) {
+    public static void menuConfiguracion(InterfazUsuario interfazUsuario) {
         int opcion;
 
         Scanner resp = new Scanner(System.in);
@@ -156,7 +228,7 @@ public class MenuPrincipal {
                     String newPassword = resp.nextLine();
                     interfazUsuario.getGestor().modificarPassword(
                             "Usuarios", "password", interfazUsuario.getUsuario().getId(), newPassword);
-                    menuB(interfazUsuario);
+                    menuPerfil(interfazUsuario);
 
                 case 2:
                     String plan;
@@ -168,7 +240,7 @@ public class MenuPrincipal {
                     plan = resp.nextLine();
                     interfazUsuario.getGestor().modificarPassword(
                             "Suscripcion", "plan", interfazUsuario.getUsuario().getId(), plan);
-                    menuB(interfazUsuario);
+                    menuPerfil(interfazUsuario);
 
                     break;
                 case 3:
@@ -183,14 +255,14 @@ public class MenuPrincipal {
                             plan = resp.nextLine();
                             interfazUsuario.getGestor().modificarPassword(
                                     "Perfil", "nombre", interfazUsuario.getUsuario().getId(), plan);
-                            menuB(interfazUsuario);
+                            menuPerfil(interfazUsuario);
                             break;
                         case "2":
                             System.out.println("Escriba la nueva restriccion");
                             plan = resp.nextLine();
                             interfazUsuario.getGestor().modificarPassword(
                                     "Perfil", "restriccion", interfazUsuario.getUsuario().getId(), plan);
-                            menuB(interfazUsuario);
+                            menuPerfil(interfazUsuario);
                             break;
                         default:
                             System.out.println("Opción inválida. Por favor, elige nuevamente.");
@@ -200,7 +272,7 @@ public class MenuPrincipal {
                     break;
                 case 0:
                     System.out.println("Volviendo a la página principal...");
-                    menuPrincipal(resp);
+                    menuIniciarSesion(resp);
 
                 default:
                     System.out.println("Opción inválida. Por favor, elige nuevamente.");
