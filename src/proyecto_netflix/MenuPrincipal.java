@@ -54,13 +54,13 @@ public class MenuPrincipal {
 
             switch (opcion) {
                 case 1:
-                    System.out.println("¡Hola!");
-                    
-                    
+                    System.out.println("1. Haz elegido el Plan Individual a $4,99 mensuales");
+                    obtenerDatos(scanner);
                     
                     break;
                 case 2:
-                    System.out.println("¡Hola2!");
+                    System.out.println("2. Haz elegido el Plan Familiar a $9,99 mensuales");
+                    obtenerDatos(scanner);
                     break;
                 case 0:
                     System.out.println("Volviendo a la página principal...");
@@ -88,7 +88,6 @@ public class MenuPrincipal {
      float precio;
      String fechaContratacion;
      
-        String pass;
         System.out.println("Ingresa tus datos de pago: ");
         System.out.println("________________________________________");
         System.out.println("Ingresa tu numero de tarjeta: ");
@@ -125,6 +124,7 @@ public class MenuPrincipal {
         //usuario.setContrasenia(password);
         
         Usuario usuario = new Usuario(idUsuario,nombre, email, password, fechaNacimiento);
+        usuario.crearUsuario(idUsuario,nombre, email, password, fechaNacimiento);
         
         InterfazUsuario interfaz = new InterfazUsuario();
 

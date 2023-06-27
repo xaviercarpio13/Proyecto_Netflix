@@ -22,7 +22,7 @@ public class Suscripcion {
         this.emailUsuario = emailUsuario;
     }
     
-    public void crearSuscripcion(){   
+    public void crearSuscripcion(String id, String plan, float precio, String fecha, String emailUsuario){   
         try {
             Conexion conexion = new Conexion();
             conexion.conectar();

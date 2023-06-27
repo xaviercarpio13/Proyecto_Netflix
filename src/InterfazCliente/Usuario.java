@@ -61,13 +61,13 @@ public class Usuario {
         this.fechaNacimiento = fechaNacimiento;
     }
     
-    public void crearUsuario(){   
+    public void crearUsuario(String id, String name, String email, String contrasenia, String fechaNacimiento){   
         try {
             Conexion conexion = new Conexion();
             conexion.conectar();
             Statement consulta;
             consulta = conexion.getConex().createStatement();
-            consulta.execute("INSERT INTO Usuario (id, nombre, email, password, fechaNacimiento) VALUES (?,?,?,?,?)");
+            consulta.execute("INSERT INTO Usuarios (id, nombre, email, password, fechaNacimiento) VALUES ('"+id+"'"+", '"+"nombre"+"', '"+email+"', '"+contrasenia+"', '"+fechaNacimiento+"')"); 
             
             System.out.println("Usuario guardado con exito");
         } catch (Exception SQLException) {
