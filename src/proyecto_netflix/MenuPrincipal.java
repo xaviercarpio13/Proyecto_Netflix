@@ -5,6 +5,7 @@ import Clases.*;
 import java.sql.SQLException;
 
 public class MenuPrincipal {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int opcion;
@@ -70,23 +71,25 @@ public class MenuPrincipal {
         int opcion;
         String correo;
         String pass;
-        
+
         System.out.println("Correo Electrónico: ");
-        Scanner resp=new Scanner (System.in);
-        correo=resp.nextLine();
+        Scanner resp = new Scanner(System.in);
+        correo = resp.nextLine();
 
         System.out.println("Contrasenia: ");
-        pass=resp.nextLine();
-        
-      try{
-          Conexion conex=new Conexion();
-          conex.conectar();
-          conex.ejecutarConsulta("Select * from Peliculas");
-      }catch (Exception SQLException){
-          System.out.println("error en conexión");
-      }
-        
-        
+        pass = resp.nextLine();
+
+ 
+            InterfazUsuario interfaz=new InterfazUsuario();
+            
+            Usuario us=interfaz.iniciarSesion(correo, pass);
+            if(us!=null){
+            System.out.println("Bienvenido, "+us.getName());
+            } else{
+                System.out.println("Correo o contrasenia no valido");
+                System.exit(0);
+            }
+
         do {
             System.out.println("1. Ver película 1");
             System.out.println("2. Ver película 2");

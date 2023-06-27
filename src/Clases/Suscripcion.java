@@ -1,3 +1,4 @@
+package Clases;
 public class Suscripcion {
     private String plan;
     private String fecha;

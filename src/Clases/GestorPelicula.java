@@ -1,3 +1,4 @@
+package Clases;
 public class GestorPelicula {
     private Pelicula pelicula;
     private GestorPersistencia gestorPersistencia;

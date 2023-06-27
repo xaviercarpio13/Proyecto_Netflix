@@ -1,3 +1,4 @@
+package Clases;
 public class ControladorAudioVideo {
     private String idioma;
     private String subtitulos;

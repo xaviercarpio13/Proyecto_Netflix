@@ -1,3 +1,4 @@
+package Clases;
 public class Perfil {
     private String nombre;
     private Integer restriccion;

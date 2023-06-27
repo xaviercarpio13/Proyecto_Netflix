@@ -17,14 +17,14 @@ public class Conexion {
         this.url="db_netflix.db";
     }
     
-    protected void conectar() throws SQLException{
+    public void conectar() throws SQLException{
         this.conex=DriverManager.getConnection(this.driver+":"+this.url);
         if(!this.conex.isClosed()){
             System.out.println("Conexion realizada correctamente");
         } 
     }
     
-    protected void cerrar() throws SQLException{
+    public void cerrar() throws SQLException{
         if(!this.conex.isClosed()){
             this.conex.close();
         }
@@ -43,16 +43,11 @@ public class Conexion {
         
         ResultSet rs=consulta.executeQuery(sql);
         
-        
-        String datos[]= new String [2];
-        
-        while(rs.next()){
-            datos[0]=rs.getString(1);
-            datos[1]=rs.getString(2);
-        }
-        for (int i = 0; i < datos.length; i++) {
-            System.out.println(datos[i]);
-        }
-        
     }
+
+    public Connection getConex() {
+        return conex;
+    }
+    
+    
 }
