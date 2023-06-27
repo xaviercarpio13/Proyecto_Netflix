@@ -49,8 +49,6 @@ public class InterfazUsuario {
             System.out.println("Contrasenia no válida");
             return null;
         }
-        
-
     }
 
     public Pelicula verPelicula(String titulo) {
