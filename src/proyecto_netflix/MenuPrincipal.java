@@ -88,9 +88,9 @@ public class MenuPrincipal {
             System.exit(0);
         }
     }
-    
+
     public static void menuB(InterfazUsuario interfaz) {
-        Scanner resp=new Scanner (System.in);
+        Scanner resp = new Scanner(System.in);
         int opcion2;
         System.out.println("________________________________________");
         System.out.println("Seleccione un perfil o configuracion");
@@ -136,28 +136,28 @@ public class MenuPrincipal {
 
     public static void menuC(InterfazUsuario interfazUsuario) {
         int opcion;
-        
+
         Scanner resp = new Scanner(System.in);
-        do {  
-        System.out.println("________________________________________");
-        System.out.println("Menu de configuracion, seleccione la operacion a realizar");
-        System.out.println("1. Cambiar contraseña");
-        System.out.println("2. Cambiar plan o metodo de pago");
-        System.out.println("3. Configuracion perfil");
-        System.out.println("0. Regresar a pantalla principal");
-        opcion = resp.nextInt();
-        resp.nextLine();
-        System.out.println("________________________________________");
-        
+        do {
+            System.out.println("________________________________________");
+            System.out.println("Menu de configuracion, seleccione la operacion a realizar");
+            System.out.println("1. Cambiar contraseña");
+            System.out.println("2. Cambiar plan o metodo de pago");
+            System.out.println("3. Configuracion perfil");
+            System.out.println("0. Regresar a pantalla principal");
+            opcion = resp.nextInt();
+            resp.nextLine();
+            System.out.println("________________________________________");
+
             switch (opcion) {
                 case 1:
                     System.out.println("Menu cambiar contrasenia");
                     System.out.println("Escriba la nueva contrasenia");
-                    String newPassword=resp.nextLine();
+                    String newPassword = resp.nextLine();
                     interfazUsuario.getGestor().modificarPassword(
-                            "Usuarios","password",interfazUsuario.getUsuario().getId(), newPassword);
+                            "Usuarios", "password", interfazUsuario.getUsuario().getId(), newPassword);
                     menuB(interfazUsuario);
-                    
+
                 case 2:
                     String plan;
                     System.out.println("Configuracion de suscripcion");
@@ -165,20 +165,43 @@ public class MenuPrincipal {
                     System.out.println("1: Basico");
                     System.out.println("2: Familiar");
                     System.out.println("3: Premium");
-                    plan=resp.nextLine();
+                    plan = resp.nextLine();
                     interfazUsuario.getGestor().modificarPassword(
-                            "Suscripcion","plan",interfazUsuario.getUsuario().getId(), plan);
+                            "Suscripcion", "plan", interfazUsuario.getUsuario().getId(), plan);
                     menuB(interfazUsuario);
-                    
-                    
+
                     break;
                 case 3:
                     System.out.println("Configuracion del perfil");
+                    System.out.println("Digite el dato a actualizar");
+                    System.out.println("1: Nombre del perfil");
+                    System.out.println("2: Restriccion");
+                    plan = resp.nextLine();
+                    switch (plan) {
+                        case "1":
+                            System.out.println("Escriba el nuevo nombre del perfil");
+                            plan = resp.nextLine();
+                            interfazUsuario.getGestor().modificarPassword(
+                                    "Perfil", "nombre", interfazUsuario.getUsuario().getId(), plan);
+                            menuB(interfazUsuario);
+                            break;
+                        case "2":
+                            System.out.println("Escriba la nueva restriccion");
+                            plan = resp.nextLine();
+                            interfazUsuario.getGestor().modificarPassword(
+                                    "Perfil", "restriccion", interfazUsuario.getUsuario().getId(), plan);
+                            menuB(interfazUsuario);
+                            break;
+                        default:
+                            System.out.println("Opción inválida. Por favor, elige nuevamente.");
+                            break;
+                    }
+
                     break;
                 case 0:
                     System.out.println("Volviendo a la página principal...");
                     menuPrincipal(resp);
-                    
+
                 default:
                     System.out.println("Opción inválida. Por favor, elige nuevamente.");
                     break;
