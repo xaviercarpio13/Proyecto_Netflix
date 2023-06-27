@@ -1,4 +1,5 @@
-package Clases;
+package Servidor;
+
 public class ControladorAudioVideo {
     private String idioma;
     private String subtitulos;

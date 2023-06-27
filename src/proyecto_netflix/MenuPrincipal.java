@@ -1,7 +1,8 @@
 package proyecto_netflix;
 
+import InterfazCliente.InterfazUsuario;
+import InterfazCliente.Usuario;
 import java.util.Scanner;
-import Clases.*;
 
 
 public class MenuPrincipal {

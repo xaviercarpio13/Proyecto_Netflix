@@ -1,4 +1,8 @@
-package Clases;
+package Servidor;
+
+import SistemaPersistencia.GestorPersistencia;
+import Servidor.Pelicula;
+
 public class GestorPelicula {
     private Pelicula pelicula;
     private GestorPersistencia gestorPersistencia;

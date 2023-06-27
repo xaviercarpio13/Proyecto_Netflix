@@ -1,5 +1,11 @@
-package Clases;
+package InterfazCliente;
 
+import SistemaPersistencia.GestorPersistencia;
+import InterfazCliente.ControladorUsuarioPerfil;
+import InterfazCliente.ControladorUsuarioSuscripcion;
+import InterfazCliente.Usuario;
+import Servidor.Pelicula;
+import Servidor.ControladorAudioVideo;
 import java.sql.SQLException;
 import java.util.ArrayList;
 

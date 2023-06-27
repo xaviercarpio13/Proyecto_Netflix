@@ -1,4 +1,5 @@
-package Clases;
+package Servidor;
+import SistemaPersistencia.GestorPersistencia;
 import java.util.ArrayList;
 
 public class GestorSuscripcion {

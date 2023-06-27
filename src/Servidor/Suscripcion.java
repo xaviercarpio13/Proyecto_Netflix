@@ -1,4 +1,4 @@
-package Clases;
+package Servidor;
 public class Suscripcion {
     private String plan;
     private String fecha;

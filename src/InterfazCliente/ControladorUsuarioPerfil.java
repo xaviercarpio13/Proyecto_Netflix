@@ -1,4 +1,9 @@
-package Clases;
+package InterfazCliente;
+
+import InterfazCliente.Usuario;
+import InterfazCliente.Perfil;
+import Servidor.GestorPerfil;
+
 public class ControladorUsuarioPerfil {
     private GestorPerfil gestorPerfil;
 

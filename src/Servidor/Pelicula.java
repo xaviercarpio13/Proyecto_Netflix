@@ -1,4 +1,4 @@
-package Clases;
+package Servidor;
 import java.util.Date;
 
 public class Pelicula {

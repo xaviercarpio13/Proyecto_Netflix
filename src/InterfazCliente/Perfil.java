@@ -1,4 +1,4 @@
-package Clases;
+package InterfazCliente;
 public class Perfil {
     private String nombre;
     private Integer restriccion;

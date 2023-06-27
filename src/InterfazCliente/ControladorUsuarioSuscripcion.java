@@ -1,4 +1,8 @@
-package Clases;
+package InterfazCliente;
+
+import Servidor.Suscripcion;
+import Servidor.GestorSuscripcion;
+
 public class ControladorUsuarioSuscripcion {
     private GestorSuscripcion gestorSuscripcion;
 

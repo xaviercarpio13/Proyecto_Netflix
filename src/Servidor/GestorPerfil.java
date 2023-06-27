@@ -1,4 +1,7 @@
-package Clases;
+package Servidor;
+import SistemaPersistencia.GestorPersistencia;
+import InterfazCliente.Perfil;
+import InterfazCliente.Usuario;
 import java.util.ArrayList;
 
 public class GestorPerfil {
