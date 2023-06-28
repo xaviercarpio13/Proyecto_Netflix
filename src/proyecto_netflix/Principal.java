@@ -213,9 +213,12 @@ public class Principal {
         System.out.println("0. Configuracion");
         System.out.println("1. Crear Perfil");
         int contador;
-        for(contador=0;contador<interfaz.getUsuario().obtenerPerfiles().size();contador++){
+        if(interfaz.getUsuario().obtenerPerfiles()!=null){
+           for(contador=0;contador<interfaz.getUsuario().obtenerPerfiles().size();contador++){
             System.out.println(contador+2+". "+interfaz.getUsuario().getNombrePerfil(contador));
+        } 
         }
+        
         opcion  = resp.nextInt();
         resp.nextLine();
         String idUsuario = interfaz.getUsuario().getId();

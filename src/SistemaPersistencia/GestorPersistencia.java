@@ -3,6 +3,7 @@ package SistemaPersistencia;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.sql.SQLException;
 
 public class GestorPersistencia<T> {
 
@@ -67,7 +68,7 @@ public class GestorPersistencia<T> {
                     + "' where id='" + id + "'");
             System.out.println("Dato cambiado cambiada correctamente");
 
-        } catch (Exception SQLException) {
+        } catch (SQLException e) {
             System.out.println("Error al cambiar la contrasenia");
         }
     }
