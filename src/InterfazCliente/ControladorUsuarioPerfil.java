@@ -7,8 +7,8 @@ import Servidor.GestorPerfil;
 public class ControladorUsuarioPerfil {
     private GestorPerfil gestorPerfil;
 
-    public ControladorUsuarioPerfil(GestorPerfil gestorPerfil) {
-        this.gestorPerfil = gestorPerfil;
+    public ControladorUsuarioPerfil() {
+        this.gestorPerfil = new GestorPerfil();
     }
 
     public Perfil crearPerfil(Usuario usuario, String nombre, Integer restriccion) {

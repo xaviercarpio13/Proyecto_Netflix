@@ -6,8 +6,8 @@ import Servidor.GestorSuscripcion;
 public class ControladorUsuarioSuscripcion {
     private GestorSuscripcion gestorSuscripcion;
 
-    public ControladorUsuarioSuscripcion(GestorSuscripcion gestorSuscripcion) {
-        this.gestorSuscripcion = gestorSuscripcion;
+    public ControladorUsuarioSuscripcion() {
+        this.gestorSuscripcion = new GestorSuscripcion();
     }
 
     public void verificarSuscripcion(String email, String contrasenia) {

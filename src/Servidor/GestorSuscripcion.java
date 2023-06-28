@@ -7,8 +7,8 @@ public class GestorSuscripcion {
     private Usuario usuario;
     private ArrayList<Suscripcion> suscripcion;
 
-    public GestorSuscripcion(Usuario us) {
-        this.usuario=us;
+    public GestorSuscripcion() {
+        this.usuario = new Usuario();
     }
     
     public void cambiarContrasenia(String contrasenia, String nuevaContrasenia){

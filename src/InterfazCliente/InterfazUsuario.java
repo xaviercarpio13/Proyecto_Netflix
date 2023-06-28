@@ -1,29 +1,23 @@
 package InterfazCliente;
 
 import SistemaPersistencia.GestorPersistencia;
-import InterfazCliente.ControladorUsuarioPerfil;
-import InterfazCliente.ControladorUsuarioSuscripcion;
-import InterfazCliente.Usuario;
 import Servidor.Pelicula;
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 
 public class InterfazUsuario {
 
     private ControladorUsuarioSuscripcion constroladorUS;
-    private ControladorAudioVideo constroladorAV;
+    private ControladorAudioVideo controladorAV;
     private Usuario usuario;
     private Pelicula pelicula;
     private GestorPersistencia gestor;
     private ControladorUsuarioPerfil controladorUP;
 
     public InterfazUsuario() {
-    }
-
-    public InterfazUsuario(ControladorUsuarioSuscripcion constroladorUS, ControladorAudioVideo constroladorAV, ControladorUsuarioPerfil controladorUP) {
-        this.constroladorUS = constroladorUS;
-        this.constroladorAV = constroladorAV;
-        this.controladorUP = controladorUP;
+        this.constroladorUS = new ControladorUsuarioSuscripcion();
+        this.controladorAV = new ControladorAudioVideo();
+        this.controladorUP = new ControladorUsuarioPerfil();
     }
 
     public Pelicula getPelicula() {
@@ -50,7 +44,11 @@ public class InterfazUsuario {
     }
     
     public void verPelicula(String titulo) {
-        constroladorAV.proyectarPelicula(titulo);
+        controladorAV.proyectarPelicula(titulo);
+    }
+
+    public ArrayList<String> verListaPeliculas() {
+        return controladorAV.verListaPeliculas();
     }
 
     public Usuario getUsuario() {

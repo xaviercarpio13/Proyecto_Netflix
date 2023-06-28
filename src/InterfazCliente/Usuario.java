@@ -115,8 +115,6 @@ public class Usuario {
             } else {
                 return null;
             }
-
-            //System.out.println("Usuario guardado con exito");
         } catch (Exception SQLException) {
             System.out.println("Error al obtener perfiles");
             return null;
