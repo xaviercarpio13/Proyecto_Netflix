@@ -22,17 +22,17 @@ public class Suscripcion {
         this.emailUsuario = emailUsuario;
     }
     
-    public void crearSuscripcion(String id, String plan, float precio, String fecha, String emailUsuario){   
+    public void crearSuscripcion(String id, String plan, float precio, String fechaContratacion, String idUsuario){   
         try {
             Conexion conexion = new Conexion();
             conexion.conectar();
             Statement consulta;
             consulta = conexion.getConex().createStatement();
-            consulta.executeUpdate("INSERT INTO Suscripcion (id, plan, precio, fechaContratacion,idUsuario) VALUES (?,?,?,?,?)");
-            System.out.println("Usuario guardado con exito");
+            consulta.executeUpdate("INSERT INTO Suscripcion (id, plan, precio, fechaContratacion, idUsuario) VALUES ('"+id+"', '"+plan+"', "+precio+", '"+fechaContratacion+"', '"+idUsuario+"')"); 
+            System.out.println("Suscripcion guardada con exito");
             
         } catch (Exception SQLException) {
-            System.out.println("Error al guardar usuario");
+            System.out.println("Error al guardar la suscripcion");
         }
     }
     

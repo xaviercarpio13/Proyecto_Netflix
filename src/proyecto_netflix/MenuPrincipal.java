@@ -3,6 +3,9 @@ package proyecto_netflix;
 import InterfazCliente.InterfazUsuario;
 import InterfazCliente.Perfil;
 import InterfazCliente.Usuario;
+import Servidor.Suscripcion;
+import java.time.LocalDate;
+import java.util.Random;
 import java.util.Scanner;
 
 public class MenuPrincipal {
@@ -25,13 +28,13 @@ public class MenuPrincipal {
                     menuContratarPlan(scanner);
                     break;
                 case 2:
-                    menuIniciarSesion(scanner);
+                    menuIniciarSesion(scanner); 
                     break;
                 case 0:
                     System.out.println("Cerrando...");
                     break;
                 default:
-                    System.out.println("Opción inválida. Por favor, elige nuevamente.");
+                    System.out.println("Opcion invalida. Por favor, elige nuevamente.");
                     break;
             }
         } while (opcion != 0);
@@ -47,7 +50,7 @@ public class MenuPrincipal {
             System.out.println();
             System.out.println("1. Plan Individual a $4,99 mensuales");
             System.out.println("2. Plan Familiar a $9,99 mensuales");
-            System.out.println("0. Volver a la página principal");
+            System.out.println("0. Volver a la pagina principal");
 
             opcion = scanner.nextInt();
             scanner.nextLine(); // Consumir el salto de línea después del número
@@ -55,12 +58,12 @@ public class MenuPrincipal {
             switch (opcion) {
                 case 1:
                     System.out.println("1. Haz elegido el Plan Individual a $4,99 mensuales");
-                    obtenerDatos(scanner);
+                    crearPlan(scanner, "1",4.99F);
                     
                     break;
                 case 2:
                     System.out.println("2. Haz elegido el Plan Familiar a $9,99 mensuales");
-                    obtenerDatos(scanner);
+                    crearPlan(scanner, "2",9.99F);
                     break;
                 case 0:
                     System.out.println("Volviendo a la página principal...");
@@ -70,24 +73,26 @@ public class MenuPrincipal {
                     break;
             }
         } while (opcion != 0);
+        
     }
 
-     public static void obtenerDatos(Scanner scanner) {
-         String aux;
-        int opcion;
+    public static void crearPlan(Scanner scanner,String plan, float precio){
+        String aux;
+        //suscripcion
+        Random random = new Random();
+        int numeroAleatorio = random.nextInt(100) + 1;
+        String idSuscripcion = String.valueOf(numeroAleatorio);
+        LocalDate fechaActual = LocalDate.now();
+        String fechaContratacion = fechaActual.toString();
+        
       //usuario 
-     String idUsuario;
-     String nombre; 
-     String email;
-     String password; 
-     String fechaNacimiento;
-     
-     //suscripcion
-     String idSuscripcion;
-     String plan;
-     float precio;
-     String fechaContratacion;
-     
+        String idUsuario;
+        String nombre; 
+        String email;
+        String password; 
+        String fechaNacimiento;
+        
+        //Ingresar datos de metodo de pago
         System.out.println("Ingresa tus datos de pago: ");
         System.out.println("________________________________________");
         System.out.println("Ingresa tu numero de tarjeta: ");
@@ -100,31 +105,31 @@ public class MenuPrincipal {
         System.out.println("Da enter para empezar a crear tu cuenta");
         System.out.println("/n/n");
          
-       // Usuario usuario = null;
+        //Ingresar datos crear cuenta
         System.out.println("Ingresa tus datos para crear cuenta:");
         System.out.println("________________________________________");
         System.out.println("Ingresa tu numero de cedula:");
         idUsuario = scanner.nextLine();
-       // usuario.setId(idUsuario);
         
-       System.out.println("Ingresa tu nombre:");
-       nombre = scanner.nextLine();
-       // usuario.setId(idUsuario);
+        System.out.println("Ingresa tu nombre:");
+        nombre = scanner.nextLine();
        
         System.out.println("Ingresa tu fecha nacimiento: ");
         fechaNacimiento = scanner.nextLine();
-       // usuario.setFechaNacimiento(fechaNacimiento);
         
         System.out.println("Ingresa tu correo electronico:");
         email = scanner.nextLine();
-        //usuario.setEmail(email);
         
         System.out.println("Ingresa tu contrasenia:");
         password = scanner.nextLine();
-        //usuario.setContrasenia(password);
         
+        //Creo usuario en netbeans 
         Usuario usuario = new Usuario(idUsuario,nombre, email, password, fechaNacimiento);
         usuario.crearUsuario(idUsuario,nombre, email, password, fechaNacimiento);
+        
+        //creo 
+        Suscripcion suscripcion = new Suscripcion(idSuscripcion, plan, precio, fechaContratacion, idUsuario);
+        suscripcion.crearSuscripcion(idSuscripcion, plan, precio, fechaContratacion, idUsuario);
         
         InterfazUsuario interfaz = new InterfazUsuario();
 
@@ -136,7 +141,9 @@ public class MenuPrincipal {
             System.out.println("Correo o contrasenia no valido");
             System.exit(0);
         }
-     }
+     
+    }
+    
      
     public static void menuIniciarSesion(Scanner scanner) {
         String correo;
@@ -236,7 +243,6 @@ public class MenuPrincipal {
                     System.out.println("Digite el nuevo plan a contratar");
                     System.out.println("1: Basico");
                     System.out.println("2: Familiar");
-                    System.out.println("3: Premium");
                     plan = resp.nextLine();
                     interfazUsuario.getGestor().modificarPassword(
                             "Suscripcion", "plan", interfazUsuario.getUsuario().getId(), plan);

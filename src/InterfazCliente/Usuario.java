@@ -67,8 +67,8 @@ public class Usuario {
             conexion.conectar();
             Statement consulta;
             consulta = conexion.getConex().createStatement();
-            consulta.execute("INSERT INTO Usuarios (id, nombre, email, password, fechaNacimiento) VALUES ('"+id+"'"+", '"+"nombre"+"', '"+email+"', '"+contrasenia+"', '"+fechaNacimiento+"')"); 
-            
+            consulta.execute("INSERT INTO Usuarios (id, nombre, email, password, fechaNacimiento) VALUES ('"+id+"', '"+name+"', '"+email+"', '"+contrasenia+"', '"+fechaNacimiento+"')"); 
+           
             System.out.println("Usuario guardado con exito");
         } catch (Exception SQLException) {
             System.out.println("Error al guardar usuario");
