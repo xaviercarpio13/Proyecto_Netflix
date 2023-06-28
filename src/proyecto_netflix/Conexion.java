@@ -20,7 +20,7 @@ public class Conexion {
     public void conectar() throws SQLException{
         this.conex=DriverManager.getConnection(this.driver+":"+this.url);
         if(!this.conex.isClosed()){
-            System.out.println("Conexion realizada correctamente");
+            //System.out.println("Conexion realizada correctamente");
         } 
     }
     

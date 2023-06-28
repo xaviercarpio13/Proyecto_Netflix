@@ -7,6 +7,7 @@ import Servidor.Suscripcion;
 import java.time.LocalDate;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class MenuPrincipal {
 
@@ -58,12 +59,12 @@ public class MenuPrincipal {
             switch (opcion) {
                 case 1:
                     System.out.println("1. Haz elegido el Plan Individual a $4,99 mensuales");
-                    crearPlan(scanner, "1",4.99F);
+                    crearSuscripcion(scanner, "1",4.99F);
                     
                     break;
                 case 2:
                     System.out.println("2. Haz elegido el Plan Familiar a $9,99 mensuales");
-                    crearPlan(scanner, "2",9.99F);
+                    crearSuscripcion(scanner, "2",9.99F);
                     break;
                 case 0:
                     System.out.println("Volviendo a la página principal...");
@@ -76,7 +77,7 @@ public class MenuPrincipal {
         
     }
 
-    public static void crearPlan(Scanner scanner,String plan, float precio){
+    public static void crearSuscripcion(Scanner scanner,String plan, float precio){
         String aux;
         //suscripcion
         Random random = new Random();
@@ -173,9 +174,11 @@ public class MenuPrincipal {
         int opcion2;
         System.out.println("________________________________________");
         System.out.println("Seleccione un perfil o configuracion");
-        System.out.println("1. Perfil A");
-        System.out.println("2. Perfil B");
-        System.out.println("3. Configuracion");
+        int contador;
+        for(contador=0;contador<interfaz.getUsuario().obtenerPerfiles().size();contador++){
+            System.out.println(contador+". "+interfaz.getUsuario().getNombrePerfil(contador));
+        }
+        System.out.println(contador+ ". Configuracion");
         opcion2 = resp.nextInt();
         resp.nextLine();
 

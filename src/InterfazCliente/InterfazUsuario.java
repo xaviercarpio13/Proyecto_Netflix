@@ -41,8 +41,7 @@ public class InterfazUsuario {
         if (respuesta == null) {
             return null;
         } 
-      
-        
+    
         if (respuesta.get(3).toString().equals(contrasenia)) {
             Usuario us = new Usuario(respuesta.get(0).toString(), respuesta.get(1).toString(),
             respuesta.get(2).toString(), respuesta.get(3).toString(), respuesta.get(4).toString());
