@@ -5,7 +5,6 @@ import InterfazCliente.ControladorUsuarioPerfil;
 import InterfazCliente.ControladorUsuarioSuscripcion;
 import InterfazCliente.Usuario;
 import Servidor.Pelicula;
-import Servidor.ControladorAudioVideo;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -23,7 +22,7 @@ public class InterfazUsuario {
     }
 
     public InterfazUsuario(ControladorUsuarioSuscripcion constroladorUS,
-            ControladorAudioVideo constroladorAV, ControladorUsuarioPerfil controladorUP) {
+        ControladorAudioVideo constroladorAV, ControladorUsuarioPerfil controladorUP) {
         this.constroladorUS = constroladorUS;
         this.constroladorAV = constroladorAV;
         this.controladorUP = controladorUP;
@@ -40,8 +39,7 @@ public class InterfazUsuario {
 
         if (respuesta == null) {
             return null;
-        } 
-      
+        }
         
         if (respuesta.get(3).toString().equals(contrasenia)) {
             Usuario us = new Usuario(respuesta.get(0).toString(), respuesta.get(1).toString(),
@@ -64,8 +62,5 @@ public class InterfazUsuario {
 
     public GestorPersistencia getGestor() {
         return gestor;
-    }
-    
-    
-    
+    }   
 }

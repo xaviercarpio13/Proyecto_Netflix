@@ -1,7 +1,6 @@
 package SistemaPersistencia;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import proyecto_netflix.Conexion;
@@ -11,16 +10,52 @@ public class GestorPersistencia<T> {
     private ArrayList<T> lista;
     private String nombreArchivo;
 
+    private Conexion conexion;
+
     public GestorPersistencia() {
+        conexion = new Conexion();
     }
 
     public GestorPersistencia(String nombreArchivo) {
         this.nombreArchivo = nombreArchivo;
         lista = new ArrayList<>();
+        conexion = new Conexion();
+    }
+    
+    public void insertar(String query){
+        try{
+            conexion.conectar();
+            Statement consulta;
+            consulta = conexion.getConex().createStatement();
+            consulta.executeUpdate(query);
+        }catch (Exception SQLException) {
+            System.out.println("Error al cambiar la contrasenia");
+        }
     }
 
-    public void insertar(T objeto) {
-        lista.add(objeto);
+    public ResultSet obtener(String query){
+        try{
+            conexion.conectar();
+            Statement consulta;
+            consulta = conexion.getConex().createStatement();
+            ResultSet resultado = consulta.executeQuery(query);
+            resultado.next();
+            return resultado;
+        }catch (Exception SQLException) {
+            System.out.println(SQLException.getMessage());
+        }
+        return null;
+    }
+
+    public void actualizar(String query){
+        try{
+            conexion.conectar();
+            Statement consulta;
+            consulta = conexion.getConex().createStatement();
+            consulta.executeUpdate(query);
+        }catch (Exception SQLException) {
+            System.out.println("Error al cambiar la contrasenia");
+        }
     }
 
     public void eliminar(T objeto) {
@@ -33,9 +68,8 @@ public class GestorPersistencia<T> {
             conexion.conectar();
             Statement consulta;
             consulta = conexion.getConex().createStatement();
-            consulta.executeUpdate("Update '"+tabla+"' set '"+columna+"' ='" + password
+            consulta.executeUpdate("Update '"+tabla+"' set '"+columna+"' = '" + password
                     + "' where id='" + id + "'");
-
             System.out.println("Dato cambiado cambiada correctamente");
 
         } catch (Exception SQLException) {
@@ -43,15 +77,13 @@ public class GestorPersistencia<T> {
         }
     }
 
- 
-
     public ArrayList buscar(String id) {
         try {
             Conexion conexion = new Conexion();
             conexion.conectar();
             Statement consulta;
             consulta = conexion.getConex().createStatement();
-            ResultSet resultado = consulta.executeQuery("Select*from Usuarios where email='" + id + "'");
+            ResultSet resultado = consulta.executeQuery("Select * from Usuarios where email='" + id + "'");
             //ResultSet resultado = consulta.executeQuery("Select*from Usuarios where email='xaviercarpio26@gmail.com'");
             boolean datosEncontrados = false;
 
@@ -77,17 +109,4 @@ public class GestorPersistencia<T> {
             return null;
         }
     }
-
-    public ArrayList<T> buscarTodos() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void guardar() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void cargar() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
 }

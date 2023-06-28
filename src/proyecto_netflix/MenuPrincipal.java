@@ -104,7 +104,7 @@ public class MenuPrincipal {
         System.out.println("________________________________________");
         System.out.println("Da enter para empezar a crear tu cuenta");
         System.out.println("/n/n");
-         
+
         //Ingresar datos crear cuenta
         System.out.println("Ingresa tus datos para crear cuenta:");
         System.out.println("________________________________________");

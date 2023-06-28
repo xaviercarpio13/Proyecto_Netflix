@@ -13,7 +13,7 @@ public class Conexion {
     private Connection conex;
     
     public Conexion(){
-        this.driver="jdbc:sqlite";
+        this.driver = "jdbc:sqlite";
         this.url="db_netflix.db";
     }
     
