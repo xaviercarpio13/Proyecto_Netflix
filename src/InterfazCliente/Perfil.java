@@ -1,4 +1,8 @@
 package InterfazCliente;
+
+import java.sql.Statement;
+import proyecto_netflix.Conexion;
+
 public class Perfil {
     private String nombre;
     private Integer restriccion;
@@ -45,6 +49,20 @@ public class Perfil {
 
     public void setId(String Id) {
         this.Id = Id;
+    }
+    
+    public void crearPerfil(String id,String nombre, Integer restriccion,String idUsuario){
+         try {
+            Conexion conexion = new Conexion();
+            conexion.conectar();
+            Statement consulta;
+            consulta = conexion.getConex().createStatement();
+            consulta.execute("INSERT INTO Perfil (id, nombre, restriccion, idUsuario) VALUES ('"+id+"', '"+nombre+"', "+restriccion+", '"+idUsuario+"')"); 
+           
+            System.out.println("Usuario perfil con exito");
+        } catch (Exception SQLException) {
+            System.out.println("Error al guardar perfil");
+        }
     }
     
 }

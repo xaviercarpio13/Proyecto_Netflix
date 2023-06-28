@@ -175,21 +175,22 @@ public class MenuPrincipal {
         System.out.println("Seleccione un perfil o configuracion");
         System.out.println("1. Perfil A");
         System.out.println("2. Perfil B");
-        System.out.println("3. Configuracion");
+        System.out.println("3. Agregar Perfil");
+        System.out.println("4. Configuracion");
         opcion2 = resp.nextInt();
         resp.nextLine();
-
-        if (opcion2 == 3) {
+        
+        switch(opcion2){
+            case 1: 
+                break;
+            case 2:
+                break;
+        }
+        if (opcion2 == 4) {
             menuConfiguracion(interfaz);
         }
 
         do {
-            System.out.println("________________________________________");
-            System.out.println("1. Ver");
-            System.out.println("2. Ver película 2");
-            System.out.println("3. Buscar película");
-            System.out.println("0. Volver a la página principal");
-
             opcion2 = resp.nextInt();
             resp.nextLine(); // Consumir el salto de línea después del número
 
@@ -213,6 +214,38 @@ public class MenuPrincipal {
         } while (opcion2 != 0);
     }
 
+    public static void CrearPerfil(Scanner scanner,String idUsuario) {
+        String aux;
+        //suscripcion
+        Random random = new Random();
+        int numeroAleatorio = random.nextInt(100) + 1;
+        String idPerfil = String.valueOf(numeroAleatorio);
+        
+      //perfil
+        String nombre;
+        int restriccion; 
+        String fechaNacimiento;
+       // String idUsuario;
+        
+        System.out.println("-----Para iniciar crea un perfil------");
+        System.out.println("________________________________________");
+        System.out.println("Ingresa nombre: ");
+        nombre = scanner.nextLine();
+        System.out.println("El perfil sera: ");
+        System.out.println("1. Adultos ");
+        System.out.println("2. Kids ");
+        restriccion = scanner.nextInt();
+        
+        idUsuario = scanner.nextLine();
+        System.out.println("Verificando...");
+        System.out.println("!Tu perfil fue creado!");
+        System.out.println("________________________________________");
+         
+        Perfil perfil = new Perfil(idPerfil, nombre, restriccion, idUsuario);
+        perfil.crearPerfil(idPerfil, nombre, restriccion, idUsuario);
+        //Creo usuario en netbeans 
+    }
+    
     public static void menuConfiguracion(InterfazUsuario interfazUsuario) {
         int opcion;
 
