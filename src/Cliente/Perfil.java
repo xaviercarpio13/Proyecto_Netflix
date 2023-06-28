@@ -2,6 +2,7 @@ package Cliente;
 
 import java.sql.Statement;
 import SistemaPersistencia.Conexion;
+import java.sql.SQLException;
 
 public class Perfil {
     private String nombre;
@@ -17,6 +18,7 @@ public class Perfil {
         this.nombre = nombre;
         this.restriccion = restriccion;
         this.idUsuario = idUsuario;
+
     }
 
     public String getNombre() {
@@ -35,18 +37,20 @@ public class Perfil {
         return Id;
     }
     
-    public void crearPerfil(String id,String nombre, Integer restriccion,String idUsuario){
+    public void crearPerfil(String id,String nombre, Integer restriccion){
          try {
+             
             Conexion conexion = new Conexion();
             conexion.conectar();
             Statement consulta;
             consulta = conexion.getConex().createStatement();
-            consulta.execute("INSERT INTO Perfil (id, nombre, restriccion, idUsuario) VALUES ('"+id+"', '"+nombre+"', "+restriccion+", '"+idUsuario+"')"); 
+
+            consulta.execute("INSERT INTO Perfil (id, nombre, restriccion, idUsuario) VALUES ('"+id+"', '"+nombre+"', '"+restriccion+"', '"+this.idUsuario+"')"); 
            
             System.out.println("Usuario perfil con exito");
             conexion.cerrar();
-        } catch (Exception SQLException) {
-            System.out.println("Error al guardar perfil");
+        } catch (SQLException e) {
+            System.out.println("Error al guardar perfil "+e.getMessage());
         }
     }
     

@@ -27,7 +27,7 @@ public class Conexion {
         if(!this.conex.isClosed()){
             this.conex.close();
         }
-        System.out.println("Base de datos cerrada");
+        //System.out.println("Base de datos cerrada");
     }
     
     protected Connection getConexion(){

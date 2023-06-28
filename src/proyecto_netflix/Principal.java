@@ -117,6 +117,8 @@ public class Principal {
         System.out.println("________________________________________");
         System.out.println("Ingresa tu numero de cedula:");
         idUsuario = scanner.nextLine();
+
+
         
         System.out.println("Ingresa tu nombre:");
         nombre = scanner.nextLine();
@@ -137,12 +139,15 @@ public class Principal {
         //Crear suscripcion
         Suscripcion suscripcion = new Suscripcion(idSuscripcion, plan, precio, fechaContratacion, idUsuario);
         suscripcion.crearSuscripcion(idSuscripcion, plan, precio, fechaContratacion, idUsuario);
-        
+
         crearPerfil(scanner,idUsuario);
+        
         
         InterfazUsuario interfaz = new InterfazUsuario();
 
+
         Usuario us = interfaz.iniciarSesion(email,password);
+
         if (us != null) {
             menuPerfil(interfaz);
             System.out.println("Bienvenido, " + us.getName());
@@ -154,6 +159,7 @@ public class Principal {
     
     public static void crearPerfil(Scanner scanner,String idUsuario) {
         //suscripcion
+        
         Random random = new Random();
         int numeroAleatorio = random.nextInt(100) + 1;
         String idPerfil = String.valueOf(numeroAleatorio);
@@ -172,13 +178,13 @@ public class Principal {
         System.out.println("2. Kids ");
         restriccion = scanner.nextInt();
         
-        idUsuario = scanner.nextLine();
+        //idUsuario = scanner.nextLine();
         System.out.println("Verificando...");
         System.out.println("!Tu perfil fue creado!");
         System.out.println("________________________________________");
-         
+        
         Perfil perfil = new Perfil(idPerfil, nombre, restriccion, idUsuario);
-        perfil.crearPerfil(idPerfil, nombre, restriccion, idUsuario);
+        perfil.crearPerfil(idPerfil, nombre, restriccion);
         //Creo usuario en netbeans 
     }
      
