@@ -39,9 +39,5 @@ public class ControladorAudioVideo {
 
         return listaPeliculas;
     }
-
-    public void decargarPelicula(String titulo) {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
 }
 

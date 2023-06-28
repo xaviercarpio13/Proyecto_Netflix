@@ -95,8 +95,10 @@ public class GestorPersistencia<T> {
             }
 
             if (datosEncontrados) {
+                conexion.cerrar();
                 return datos;
             } else {
+                conexion.cerrar();
                 return null;
             }
 

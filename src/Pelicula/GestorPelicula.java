@@ -88,16 +88,11 @@ public class GestorPelicula {
                  Pelicula newPelicula = new Pelicula(id, titulo, genero, anio, productor, duracion, path);
                  peliculas.add(newPelicula);
             }
-
             return peliculas;
+            
         }catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
         return null;
-}
-
-    public void eliminarPelicula(String id) {
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 }

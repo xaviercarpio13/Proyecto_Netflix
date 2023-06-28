@@ -29,40 +29,20 @@ public class Usuario {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getContrasenia() {
         return contrasenia;
     }
-
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
-    }
-
+    
     public String getFechaNacimiento() {
         return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
     }
 
     public void crearUsuario(String id, String name, String email, String contrasenia, String fechaNacimiento) {
@@ -74,6 +54,7 @@ public class Usuario {
             consulta.execute("INSERT INTO Usuarios (id, nombre, email, password, fechaNacimiento) VALUES ('" + id + "', '" + name + "', '" + email + "', '" + contrasenia + "', '" + fechaNacimiento + "')");
 
             System.out.println("Usuario guardado con exito");
+            conexion.cerrar();
         } catch (Exception SQLException) {
             System.out.println("Error al guardar usuario");
         }
@@ -111,10 +92,13 @@ public class Usuario {
             }
             if (datosEncontrados) {
                 this.perfiles = perfiles;
+                conexion.cerrar();
                 return perfiles;
             } else {
+                conexion.cerrar();
                 return null;
             }
+            
         } catch (Exception SQLException) {
             System.out.println("Error al obtener perfiles");
             return null;

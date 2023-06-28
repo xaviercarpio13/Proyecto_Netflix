@@ -30,7 +30,7 @@ public class Suscripcion {
             consulta = conexion.getConex().createStatement();
             consulta.executeUpdate("INSERT INTO Suscripcion (id, plan, precio, fechaContratacion, idUsuario) VALUES ('"+id+"', '"+plan+"', "+precio+", '"+fechaContratacion+"', '"+idUsuario+"')"); 
             System.out.println("Suscripcion guardada con exito");
-            
+            conexion.cerrar();
         } catch (Exception SQLException) {
             System.out.println("Error al guardar la suscripcion");
         }
