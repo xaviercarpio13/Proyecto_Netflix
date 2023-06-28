@@ -16,13 +16,11 @@ public class InterfazUsuario {
     private Pelicula pelicula;
     private GestorPersistencia gestor;
     private ControladorUsuarioPerfil controladorUP;
-    
 
     public InterfazUsuario() {
     }
 
-    public InterfazUsuario(ControladorUsuarioSuscripcion constroladorUS,
-        ControladorAudioVideo constroladorAV, ControladorUsuarioPerfil controladorUP) {
+    public InterfazUsuario(ControladorUsuarioSuscripcion constroladorUS, ControladorAudioVideo constroladorAV, ControladorUsuarioPerfil controladorUP) {
         this.constroladorUS = constroladorUS;
         this.constroladorAV = constroladorAV;
         this.controladorUP = controladorUP;
@@ -31,7 +29,6 @@ public class InterfazUsuario {
     public Pelicula getPelicula() {
         return pelicula;
     }
-
     
     public Usuario iniciarSesion(String email, String contrasenia) {
         this.gestor = new GestorPersistencia();
@@ -39,12 +36,12 @@ public class InterfazUsuario {
 
         if (respuesta == null) {
             return null;
-        }
-        
+        } 
+    
         if (respuesta.get(3).toString().equals(contrasenia)) {
             Usuario us = new Usuario(respuesta.get(0).toString(), respuesta.get(1).toString(),
             respuesta.get(2).toString(), respuesta.get(3).toString(), respuesta.get(4).toString());
-            this.usuario=us;
+            this.usuario = us;
             return us;
         } else {
             System.out.println("Contrasenia no válida");
@@ -52,8 +49,8 @@ public class InterfazUsuario {
         }
     }
     
-    public Pelicula verPelicula(String titulo) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void verPelicula(String titulo) {
+        constroladorAV.proyectarPelicula(titulo);
     }
 
     public Usuario getUsuario() {
@@ -62,5 +59,5 @@ public class InterfazUsuario {
 
     public GestorPersistencia getGestor() {
         return gestor;
-    }   
+    }
 }

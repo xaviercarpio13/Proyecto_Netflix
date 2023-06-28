@@ -29,7 +29,8 @@ public class GestorPersistencia<T> {
             consulta = conexion.getConex().createStatement();
             consulta.executeUpdate(query);
         }catch (Exception SQLException) {
-            System.out.println("Error al cambiar la contrasenia");
+//            System.out.println("Error al cambiar la contrasenia");
+            System.out.println(SQLException.getMessage());
         }
     }
 
@@ -39,7 +40,6 @@ public class GestorPersistencia<T> {
             Statement consulta;
             consulta = conexion.getConex().createStatement();
             ResultSet resultado = consulta.executeQuery(query);
-            resultado.next();
             return resultado;
         }catch (Exception SQLException) {
             System.out.println(SQLException.getMessage());
@@ -47,7 +47,18 @@ public class GestorPersistencia<T> {
         return null;
     }
 
-    public void actualizar(String query){
+//    public void actualizar(String query){
+//        try{
+//            conexion.conectar();
+//            Statement consulta;
+//            consulta = conexion.getConex().createStatement();
+//            consulta.executeUpdate(query);
+//        }catch (Exception SQLException) {
+//            System.out.println("Error al cambiar la contrasenia");
+//        }
+//    }
+
+    public void eliminar(String query) {
         try{
             conexion.conectar();
             Statement consulta;
@@ -58,17 +69,13 @@ public class GestorPersistencia<T> {
         }
     }
 
-    public void eliminar(T objeto) {
-        lista.remove(objeto);
-    }
-
-    public void modificarPassword(String tabla, String columna, String id, String password) {
+    public void actualizar(String tabla, String columna, String id, String nuevoAtributo) {
         try {
             Conexion conexion = new Conexion();
             conexion.conectar();
             Statement consulta;
             consulta = conexion.getConex().createStatement();
-            consulta.executeUpdate("Update '"+tabla+"' set '"+columna+"' = '" + password
+            consulta.executeUpdate("Update '"+tabla+"' set '"+columna+"' = '" + nuevoAtributo
                     + "' where id='" + id + "'");
             System.out.println("Dato cambiado cambiada correctamente");
 

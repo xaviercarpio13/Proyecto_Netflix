@@ -8,6 +8,7 @@ import Servidor.GestorPelicula;
 import Servidor.Pelicula;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * @author juanf
@@ -43,6 +44,17 @@ public class ControladorAudioVideo {
             System.out.println(e.getMessage());
             System.out.println("Error al reproducir la pelicula");
         }
+    }
+
+    public ArrayList<String> verListaPeliculas() {
+        ArrayList<Pelicula> peliculas = gestorPelicula.obtenerPeliculas(3);
+        ArrayList<String> listaPeliculas = new ArrayList<String>();
+
+        for (Pelicula pelicula: peliculas) {
+            listaPeliculas.add(pelicula.getTitulo());
+        }
+
+        return listaPeliculas;
     }
 
     public void decargarPelicula(String titulo) {

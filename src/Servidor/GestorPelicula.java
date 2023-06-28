@@ -2,6 +2,8 @@ package Servidor;
 import java.sql.ResultSet;
 
 import SistemaPersistencia.GestorPersistencia;
+
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class GestorPelicula {
@@ -27,7 +29,7 @@ public class GestorPelicula {
         float duracion = pelicula.getDuracion();
         String path = pelicula.getPath();
 
-        String query = "INSERT INTO pelicula (id, titulo, genero, anio, productor, duracion, path) VALUES ('"+id+"', '"+titulo+"', '"+genero+"', '"+anio+"', '"+productor+"', '"+duracion+"', '"+path+"')";
+        String query = "INSERT INTO Peliculas (id, titulo, genero, anio, productor, duracion, path) VALUES ('"+id+"', '"+titulo+"', '"+genero+"', '"+anio+"', '"+productor+"', '"+duracion+"', '"+path+"')";
         gestorPersistencia.insertar(query);
 
         return new Pelicula(
@@ -66,6 +68,34 @@ public class GestorPelicula {
         }
         return new Pelicula();
     }
+
+    public ArrayList<Pelicula> obtenerPeliculas(Integer limit){
+
+        ArrayList<Pelicula> peliculas = new ArrayList<Pelicula>();
+        try {
+            String query = "SELECT * FROM Peliculas ORDER BY id LIMIT "+limit+";";
+            ResultSet result = gestorPersistencia.obtener(query);
+
+            while(result.next()){
+                String id = result.getString("id");
+                String genero = result.getString("genero");
+                String titulo = result.getString("titulo");
+                String anio = result.getString("anio");
+                String productor = result.getString("productor");
+                float duracion = result.getFloat("duracion");
+                String path = result.getString("path");
+
+                 Pelicula newPelicula = new Pelicula(id, titulo, genero, anio, productor, duracion, path);
+                 peliculas.add(newPelicula);
+            }
+
+            return peliculas;
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+}
 
     public void eliminarPelicula(String id) {
         throw new UnsupportedOperationException("Not yet implemented");
