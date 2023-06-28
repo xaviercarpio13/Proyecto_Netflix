@@ -7,15 +7,19 @@ import Servidor.Suscripcion;
 import java.time.LocalDate;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class MenuPrincipal {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        menuPrincipal(scanner);
+        scanner.close();
+    }
+    
+    public static void menuPrincipal(Scanner scanner){
         int opcion;
         do {
-            System.out.println("Bienvenido a Netflix, elige una opcin:");
+            System.out.println("Bienvenido a Netflix, elige una opcion: ");
             System.out.println("1. Contratar plan");
             System.out.println("2. Iniciar sesion");
             System.out.println("0. Cerrar");
@@ -32,15 +36,13 @@ public class MenuPrincipal {
                     menuIniciarSesion(scanner); 
                     break;
                 case 0:
-                    System.out.println("Cerrando...");
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Opcion invalida. Por favor, elige nuevamente.");
                     break;
             }
         } while (opcion != 0);
-
-        scanner.close();
     }
 
     public static void menuContratarPlan(Scanner scanner) {
@@ -68,14 +70,16 @@ public class MenuPrincipal {
                     break;
                 case 0:
                     System.out.println("Volviendo a la página principal...");
+                    menuPrincipal(scanner);
+                    
                     break;
                 default:
                     System.out.println("Opción inválida. Por favor, elige nuevamente.");
                     break;
             }
-        } while (opcion != 0);
-        
+        } while (opcion != 0);       
     }
+    
 
     public static void crearSuscripcion(Scanner scanner,String plan, float precio){
         String aux;
@@ -124,13 +128,15 @@ public class MenuPrincipal {
         System.out.println("Ingresa tu contrasenia:");
         password = scanner.nextLine();
         
-        //Creo usuario en netbeans 
+        //Crear usuario 
         Usuario usuario = new Usuario(idUsuario,nombre, email, password, fechaNacimiento);
         usuario.crearUsuario(idUsuario,nombre, email, password, fechaNacimiento);
         
-        //creo 
+        //Crear suscripcion
         Suscripcion suscripcion = new Suscripcion(idSuscripcion, plan, precio, fechaContratacion, idUsuario);
         suscripcion.crearSuscripcion(idSuscripcion, plan, precio, fechaContratacion, idUsuario);
+        
+        crearPerfil(scanner,idUsuario);
         
         InterfazUsuario interfaz = new InterfazUsuario();
 
@@ -142,82 +148,9 @@ public class MenuPrincipal {
             System.out.println("Correo o contrasenia no valido");
             System.exit(0);
         }
-     
     }
     
-     
-    public static void menuIniciarSesion(Scanner scanner) {
-        String correo;
-        String pass;
-        System.out.println("________________________________________");
-        System.out.println("Correo Electrónico: ");
-        Scanner resp = new Scanner(System.in);
-        correo = resp.nextLine();
-
-        System.out.println("Contrasenia: ");
-        pass = resp.nextLine();
-
-        InterfazUsuario interfaz = new InterfazUsuario();
-
-        Usuario us = interfaz.iniciarSesion(correo, pass);
-        if (us != null) {
-            menuPerfil(interfaz);
-            System.out.println("Bienvenido, " + us.getName());
-        } else {
-            System.out.println("Correo o contrasenia no valido");
-            System.exit(0);
-        }
-    }
-
-    public static void menuPerfil(InterfazUsuario interfaz) {
-        Scanner resp = new Scanner(System.in);
-        int opcion2;
-        System.out.println("________________________________________");
-        System.out.println("Seleccione un perfil o configuracion");
-        int contador;
-        for(contador=0;contador<interfaz.getUsuario().obtenerPerfiles().size();contador++){
-            System.out.println(contador+". "+interfaz.getUsuario().getNombrePerfil(contador));
-        }
-        System.out.println(contador+ ". Configuracion");
-        opcion2 = resp.nextInt();
-        resp.nextLine();
-        
-        switch(opcion2){
-            case 1: 
-                break;
-            case 2:
-                break;
-        }
-        if (opcion2 == 4) {
-            menuConfiguracion(interfaz);
-        }
-
-        do {
-            opcion2 = resp.nextInt();
-            resp.nextLine(); // Consumir el salto de línea después del número
-
-            switch (opcion2) {
-                case 1:
-                    System.out.println("Viendo película 1");
-                    break;
-                case 2:
-                    System.out.println("Viendo película 2");
-                    break;
-                case 3:
-                    System.out.println("Buscando película");
-                    break;
-                case 0:
-                    System.out.println("Volviendo a la página principal...");
-                    break;
-                default:
-                    System.out.println("Opción inválida. Por favor, elige nuevamente.");
-                    break;
-            }
-        } while (opcion2 != 0);
-    }
-
-    public static void CrearPerfil(Scanner scanner,String idUsuario) {
-        String aux;
+    public static void crearPerfil(Scanner scanner,String idUsuario) {
         //suscripcion
         Random random = new Random();
         int numeroAleatorio = random.nextInt(100) + 1;
@@ -225,8 +158,7 @@ public class MenuPrincipal {
         
       //perfil
         String nombre;
-        int restriccion; 
-        String fechaNacimiento;
+        int restriccion;
        // String idUsuario;
         
         System.out.println("-----Para iniciar crea un perfil------");
@@ -247,6 +179,103 @@ public class MenuPrincipal {
         perfil.crearPerfil(idPerfil, nombre, restriccion, idUsuario);
         //Creo usuario en netbeans 
     }
+     
+    public static void menuIniciarSesion(Scanner scanner) {
+        String correo;
+        String pass;
+        System.out.println("________________________________________");
+        System.out.println("Correo Electronico: ");
+        Scanner resp = new Scanner(System.in);
+        correo = resp.nextLine();
+
+        System.out.println("Contrasenia: ");
+        pass = resp.nextLine();
+
+        InterfazUsuario interfaz = new InterfazUsuario();
+
+        Usuario us = interfaz.iniciarSesion(correo, pass);
+        if (us != null) {
+            menuPerfil(interfaz);
+            System.out.println("Bienvenido, " + us.getName());
+        } else {
+            System.out.println("Correo o contrasenia no valido");
+            System.exit(0);
+        }
+    }
+
+    public static void menuPerfil(InterfazUsuario interfaz) {
+        Scanner resp = new Scanner(System.in);
+        int opcion;
+        System.out.println("________________________________________");
+        System.out.println("Seleccione un perfil o configuracion");
+        System.out.println("0. Configuracion");
+        System.out.println("1. Crear Perfil");
+        int contador;
+        for(contador=0;contador<interfaz.getUsuario().obtenerPerfiles().size();contador++){
+            System.out.println(contador+2+". "+interfaz.getUsuario().getNombrePerfil(contador));
+        }
+        opcion  = resp.nextInt();
+        resp.nextLine();
+        String idUsuario = interfaz.getUsuario().getId();
+        String email = interfaz.getUsuario().getEmail();
+        String password = interfaz.getUsuario().getEmail();
+        switch(opcion){
+            case 0:
+                    menuConfiguracion(interfaz);
+                break;
+            case 1:
+                    crearPerfil(resp , idUsuario);
+                break;
+            case 2: 
+                    interfaz.iniciarSesion(email,password);
+                break;
+            case 3: 
+                interfaz.iniciarSesion(email,password);
+                break;
+            case 4: 
+                interfaz.iniciarSesion(email,password);
+                break;
+            case 5: 
+                interfaz.iniciarSesion(email,password);
+                break;  
+            case 6: 
+                interfaz.iniciarSesion(email,password);
+                break;
+            default:
+                    
+                break;
+        }
+    }
+
+   public static void menuPeliculas(){
+        Scanner resp = new Scanner(System.in);
+        int opcion;
+        System.out.println("________________________________________");
+        System.out.println("1. Ver Pelicula 1");
+        System.out.println("2. Ver Pelicula 2");
+        System.out.println("3. Buscar Pelicula");
+        System.out.println("4. Salir de la Aplicacion");
+        opcion  = resp.nextInt();
+        resp.nextLine();
+        switch (opcion) {
+                case 1:
+                    System.out.println("Viendo película 1");
+                    break;
+                case 2:
+                    System.out.println("Viendo película 2");
+                    break;
+                case 3:
+                    System.out.println("Buscando película");
+                    break;
+                case 0:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Opción inválida. Por favor, elige nuevamente.");
+                    break;
+            }
+   }
+        
     
     public static void menuConfiguracion(InterfazUsuario interfazUsuario) {
         int opcion;
