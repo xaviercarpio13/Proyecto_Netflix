@@ -312,7 +312,7 @@ public class Principal {
                     String plan;
                     System.out.println("Configuracion de suscripcion");
                     System.out.println("Digite el nuevo plan a contratar");
-                    System.out.println("1: Basico");
+                    System.out.println("1: Individual");
                     System.out.println("2: Familiar");
                     plan = resp.nextLine();
                     interfazUsuario.getGestor().actualizar(
