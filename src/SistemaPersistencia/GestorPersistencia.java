@@ -3,7 +3,6 @@ package SistemaPersistencia;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import proyecto_netflix.Conexion;
 
 public class GestorPersistencia<T> {
 
@@ -46,17 +45,6 @@ public class GestorPersistencia<T> {
         }
         return null;
     }
-
-//    public void actualizar(String query){
-//        try{
-//            conexion.conectar();
-//            Statement consulta;
-//            consulta = conexion.getConex().createStatement();
-//            consulta.executeUpdate(query);
-//        }catch (Exception SQLException) {
-//            System.out.println("Error al cambiar la contrasenia");
-//        }
-//    }
 
     public void eliminar(String query) {
         try{

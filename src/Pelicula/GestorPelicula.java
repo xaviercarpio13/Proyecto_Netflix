@@ -1,4 +1,4 @@
-package Servidor;
+package Pelicula;
 import java.sql.ResultSet;
 
 import SistemaPersistencia.GestorPersistencia;

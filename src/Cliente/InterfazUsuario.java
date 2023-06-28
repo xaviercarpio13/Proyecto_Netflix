@@ -1,23 +1,20 @@
-package InterfazCliente;
+package Cliente;
 
+import Pelicula.ControladorAudioVideo;
 import SistemaPersistencia.GestorPersistencia;
-import Servidor.Pelicula;
+import Pelicula.Pelicula;
 
 import java.util.ArrayList;
 
 public class InterfazUsuario {
 
-    private ControladorUsuarioSuscripcion constroladorUS;
     private ControladorAudioVideo controladorAV;
     private Usuario usuario;
     private Pelicula pelicula;
     private GestorPersistencia gestor;
-    private ControladorUsuarioPerfil controladorUP;
 
     public InterfazUsuario() {
-        this.constroladorUS = new ControladorUsuarioSuscripcion();
         this.controladorAV = new ControladorAudioVideo();
-        this.controladorUP = new ControladorUsuarioPerfil();
     }
 
     public Pelicula getPelicula() {

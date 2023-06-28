@@ -1,22 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package InterfazCliente;
-
-import Servidor.GestorPelicula;
-import Servidor.Pelicula;
-
-import java.io.File;
+package Pelicula;
 import java.util.ArrayList;
 
-/**
- * @author juanf
- */
-
 public class ControladorAudioVideo {
-    private String idioma;
-    private String subtitulos;
     private Pelicula pelicula;
     private GestorPelicula gestorPelicula;
 
@@ -24,9 +9,7 @@ public class ControladorAudioVideo {
         this.gestorPelicula = new GestorPelicula();
     }
 
-    public ControladorAudioVideo(String idioma, String subtitulos, GestorPelicula gestorPelicula) {
-        this.idioma = idioma;
-        this.subtitulos = subtitulos;
+    public ControladorAudioVideo(GestorPelicula gestorPelicula) {
         this.gestorPelicula = gestorPelicula;
     }
 

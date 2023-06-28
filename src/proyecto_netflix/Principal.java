@@ -1,17 +1,17 @@
 package proyecto_netflix;
 
-import InterfazCliente.InterfazUsuario;
-import InterfazCliente.Perfil;
-import InterfazCliente.Usuario;
-import Servidor.Suscripcion;
+//@authors: Xavier Carpio, Juan Carrillo, Carlos Morales, Kelly Sangoluisa
 
-import java.lang.reflect.Array;
+import Cliente.InterfazUsuario;
+import Cliente.Perfil;
+import Cliente.Suscripcion;
+import Cliente.Usuario;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class MenuPrincipal {
+public class Principal {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         menuPrincipal(scanner);
@@ -109,9 +109,9 @@ public class MenuPrincipal {
         System.out.println("Verificando...");
         System.out.println("¡Tus datos de pago se han guardado exitosamente!");
         System.out.println("________________________________________");
-        System.out.println("Da enter para empezar a crear tu cuenta");
-        System.out.println("/n/n");
-         
+        System.out.println();
+        System.out.println();
+        System.out.println();
         //Ingresar datos crear cuenta
         System.out.println("Ingresa tus datos para crear cuenta:");
         System.out.println("________________________________________");
@@ -270,7 +270,10 @@ public class MenuPrincipal {
                     System.exit(0);
                     break;
                 case 1:
-                    System.out.println("Buscando película");
+                    System.out.println("Ingresa el nombre de la película");
+                    Scanner resp2 = new Scanner(System.in);
+                    String nombrePeliculaScn = resp2.nextLine();
+                    interfaz.verPelicula(nombrePeliculaScn);
                     break;
                 default:
                     System.out.println("Opción inválida. Por favor, elige nuevamente.");

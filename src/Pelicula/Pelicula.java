@@ -1,5 +1,4 @@
-package Servidor;
-import java.util.Date;
+package Pelicula;
 
 public class Pelicula {
     private String titulo;

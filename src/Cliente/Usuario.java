@@ -1,9 +1,9 @@
-package InterfazCliente;
+package Cliente;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import proyecto_netflix.Conexion;
+import SistemaPersistencia.Conexion;
 
 public class Usuario {
 

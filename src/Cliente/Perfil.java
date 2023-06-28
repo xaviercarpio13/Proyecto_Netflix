@@ -1,7 +1,7 @@
-package InterfazCliente;
+package Cliente;
 
 import java.sql.Statement;
-import proyecto_netflix.Conexion;
+import SistemaPersistencia.Conexion;
 
 public class Perfil {
     private String nombre;
