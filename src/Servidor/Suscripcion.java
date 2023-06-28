@@ -15,7 +15,7 @@ public class Suscripcion {
     }
 
     public Suscripcion(String id, String plan, float precio, String fecha, String emailUsuario) {
-        id = id;
+        this.id = id;
         this.plan = plan;
         this.precio = precio;
         this.fecha = fecha;
