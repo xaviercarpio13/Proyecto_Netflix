@@ -63,12 +63,12 @@ public class Principal {
             switch (opcion) {
                 case 1:
                     System.out.println("1. Haz elegido el Plan Individual a $4,99 mensuales");
-                    crearSuscripcion(scanner, "1",4.99F);
+                    menuSuscripcion(scanner, "1",4.99F);
                     
                     break;
                 case 2:
                     System.out.println("2. Haz elegido el Plan Familiar a $9,99 mensuales");
-                    crearSuscripcion(scanner, "2",9.99F);
+                    menuSuscripcion(scanner, "2",9.99F);
                     break;
                 case 0:
                     System.out.println("Volviendo a la página principal...");
@@ -83,7 +83,7 @@ public class Principal {
     }
     
 
-    public static void crearSuscripcion(Scanner scanner,String plan, float precio){
+    public static void menuSuscripcion(Scanner scanner,String plan, float precio){
         String aux;
         //suscripcion
         Random random = new Random();
@@ -140,7 +140,7 @@ public class Principal {
         Suscripcion suscripcion = new Suscripcion(idSuscripcion, plan, precio, fechaContratacion, idUsuario);
         suscripcion.crearSuscripcion(idSuscripcion, plan, precio, fechaContratacion, idUsuario);
 
-        crearPerfil(scanner,idUsuario);
+        menuPerfil(scanner,idUsuario);
         
         
         InterfazUsuario interfaz = new InterfazUsuario();
@@ -149,7 +149,7 @@ public class Principal {
         Usuario us = interfaz.iniciarSesion(email,password);
 
         if (us != null) {
-            menuPerfil(interfaz);
+            menuSeleccionPerfil(interfaz);
             System.out.println("Bienvenido, " + us.getName());
         } else {
             System.out.println("Correo o contrasenia no valido");
@@ -157,7 +157,7 @@ public class Principal {
         }
     }
     
-    public static void crearPerfil(Scanner scanner,String idUsuario) {
+    public static void menuPerfil(Scanner scanner,String idUsuario) {
         //suscripcion
         
         Random random = new Random();
@@ -203,7 +203,7 @@ public class Principal {
 
         Usuario us = interfaz.iniciarSesion(correo, pass);
         if (us != null) {
-            menuPerfil(interfaz);
+            menuSeleccionPerfil(interfaz);
             System.out.println("Bienvenido, " + us.getName());
         } else {
             System.out.println("Correo o contrasenia no valido");
@@ -211,7 +211,7 @@ public class Principal {
         }
     }
 
-    public static void menuPerfil(InterfazUsuario interfaz) {
+    public static void menuSeleccionPerfil(InterfazUsuario interfaz) {
         Scanner resp = new Scanner(System.in);
         int opcion;
         System.out.println("________________________________________");
@@ -235,7 +235,7 @@ public class Principal {
                     menuConfiguracion(interfaz);
                 break;
             case 1:
-                    crearPerfil(resp , idUsuario);
+                    menuPerfil(resp , idUsuario);
                 break;
             case 2: 
                 menuPeliculas();
@@ -315,7 +315,7 @@ public class Principal {
                     String newPassword = resp.nextLine();
                     interfazUsuario.getGestor().actualizar(
                             "Usuarios", "password", interfazUsuario.getUsuario().getId(), newPassword);
-                    menuPerfil(interfazUsuario);
+                    menuSeleccionPerfil(interfazUsuario);
                     break;
                 case 2:
                     String plan;
@@ -326,7 +326,7 @@ public class Principal {
                     plan = resp.nextLine();
                     interfazUsuario.getGestor().actualizar(
                             "Suscripcion", "plan", interfazUsuario.getUsuario().getId(), plan);
-                    menuPerfil(interfazUsuario);
+                    menuSeleccionPerfil(interfazUsuario);
 
                     break;
                 case 3:
@@ -341,14 +341,14 @@ public class Principal {
                             plan = resp.nextLine();
                             interfazUsuario.getGestor().actualizar(
                                     "Perfil", "nombre", interfazUsuario.getUsuario().getId(), plan);
-                            menuPerfil(interfazUsuario);
+                            menuSeleccionPerfil(interfazUsuario);
                             break;
                         case "2":
                             System.out.println("Escriba la nueva restriccion");
                             plan = resp.nextLine();
                             interfazUsuario.getGestor().actualizar(
                                     "Perfil", "restriccion", interfazUsuario.getUsuario().getId(), plan);
-                            menuPerfil(interfazUsuario);
+                            menuSeleccionPerfil(interfazUsuario);
                             break;
                         default:
                             System.out.println("Opción inválida. Por favor, elige nuevamente.");
