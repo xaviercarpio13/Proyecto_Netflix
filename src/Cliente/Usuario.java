@@ -108,6 +108,5 @@ public class Usuario {
     public String getNombrePerfil(int index) {
         return perfiles.get(index).get(1);
     }
-
     
 }

@@ -82,7 +82,6 @@ public class Principal {
         } while (opcion != 0);       
     }
     
-
     public static void menuSuscripcion(Scanner scanner,String plan, float precio){
         String aux;
         //suscripcion
@@ -258,7 +257,7 @@ public class Principal {
         }
     }
 
-   public static void menuPeliculas(){
+    public static void menuPeliculas(){
         InterfazUsuario interfaz = new InterfazUsuario();
 
         System.out.println("________________________________________");
@@ -291,8 +290,7 @@ public class Principal {
                     break;
         }
    }
-        
-    
+          
     public static void menuConfiguracion(InterfazUsuario interfazUsuario) {
         int opcion;
 
